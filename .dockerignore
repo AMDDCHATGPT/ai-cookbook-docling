@@ -1,0 +1,71 @@
+# Git and version control
+.git
+.gitignore
+.github
+
+# Python cache and artifacts  
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.code-workspace
+
+# OS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Data directories (ephemeral in containers)
+data/lancedb
+data/uploads
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Documentation and non-essential files
+README.md
+*.md
+LICENCE
+
+# Project specific exclusions
+agents/
+mcp/
+models/
+patterns/
+tools/
+
+# Temporary and cache files
+temp/
+tmp/
+.cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Lock files (use requirements.txt instead)
+pyproject.toml
+uv.lock
+poetry.lock
+Pipfile.lock
