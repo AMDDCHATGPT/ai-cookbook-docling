@@ -113,3 +113,67 @@ This means when your RAG system retrieves chunks, they'll have the proper contex
 For full documentation, visit [documentation site](https://ds4sd.github.io/docling/).
 
 For example notebooks and more detailed guides, check out [GitHub repository](https://github.com/DS4SD/docling).
+
+## Interactive Upload & Processing in Streamlit (New)
+
+In addition to the numbered step scripts, you can now upload and process documents directly through the Streamlit interface for a more interactive experience.
+
+### Quick Start
+
+1. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+2. Set up your environment:
+```bash
+# Create .env file with your OpenAI API key
+echo "OPENAI_API_KEY=your_api_key_here" > .env
+```
+
+3. Launch the interactive application:
+```bash
+streamlit run 5-chat.py
+```
+
+### Interactive Workflow
+
+The Streamlit app now includes a sidebar with document management features:
+
+1. **Document Upload**: Upload multiple files (PDF, DOCX, PPTX, XLSX, Markdown, HTML, TXT) using the file uploader
+2. **Automatic Processing**: Click "Process Documents" to automatically:
+   - Convert documents using Docling's DocumentConverter
+   - Create chunks using HybridChunker with OpenAI tokenizer
+   - Generate embeddings using OpenAI's text-embedding-3-large
+   - Store everything in LanceDB for fast retrieval
+3. **Smart Deduplication**: Files are tracked in session state to avoid re-processing the same document multiple times
+4. **Real-time Stats**: View knowledge base statistics including total chunks and list of ingested files
+5. **Enhanced Chat**: Ask questions with improved context-only responses and vector similarity search
+
+### Storage Locations
+
+- **Uploaded Files**: Stored in `data/uploads/` directory
+- **Vector Database**: LanceDB database stored in `data/lancedb/` directory
+- **Embeddings**: Generated using OpenAI's text-embedding-3-large model
+
+### Features
+
+- **Multi-format Support**: Process various document types seamlessly
+- **Progress Tracking**: Real-time feedback during document processing
+- **Per-file Statistics**: See how many chunks were created for each document
+- **Context-focused Responses**: AI responses are now more precise and only use information from uploaded documents
+- **Session Management**: Clear chat history and track processed files
+- **Error Handling**: Graceful handling of processing failures with detailed feedback
+
+### Important Notes
+
+- **API Key Required**: You need a valid OpenAI API key for embeddings and chat functionality
+- **Session-based Deduplication**: File tracking is per-session; restarting the app allows re-processing of previously uploaded files
+- **Local Storage**: All files and data remain on your local machine for privacy and security
+- **No Multi-user Support**: This is designed for single-user local usage
+
+### Troubleshooting
+
+- **"No documents ingested yet"**: Upload and process documents using the sidebar before asking questions
+- **Empty responses**: Ensure your question relates to content in the uploaded documents
+- **Processing failures**: Check file formats are supported and files aren't corrupted
